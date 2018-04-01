@@ -1,6 +1,7 @@
 package com.axeleroy.overworld;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Bundle;
@@ -65,6 +66,8 @@ public class TagMusic extends Activity {
                 // Open a map activity using a new intent, then be able to return the Geofenced coordinates within a bundle
                 // Bundle should contain something like ArrayList<Geofence Coordinates>
                 // Activity should let you set geofences (ONE SHOULD BE FINE)
+                Intent intent = new Intent(TagMusic.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 
