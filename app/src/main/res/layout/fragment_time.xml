@@ -1,0 +1,38 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.axeleroy.overworld.TimeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ImageButton
+        android:id="@+id/daybutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/ic_weather_sunny"
+        android:text="Button"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/nightbutton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="238dp" />
+
+    <ImageButton
+        android:id="@+id/nightbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="52dp"
+        android:background="@null"
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/ic_weather_night"
+        android:text="Button"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/daybutton"
+        tools:layout_editor_absoluteY="242dp" />
+</android.support.constraint.ConstraintLayout>

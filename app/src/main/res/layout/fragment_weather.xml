@@ -1,0 +1,52 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.axeleroy.overworld.WeatherFragment">
+
+    <ImageButton
+        android:id="@+id/buttonWindy"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:background="@null"
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/ic_weather_windy"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSunny"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="243dp" />
+
+
+    <ImageButton
+        android:id="@+id/buttonRainy"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:background="@null"
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/ic_weather_rainy"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonSunny"
+        tools:layout_editor_absoluteY="243dp" />
+
+
+    <ImageButton
+        android:id="@+id/buttonSunny"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_vertical"
+        android:background="@null"
+        android:padding="@dimen/fab_margin"
+        android:src="@drawable/ic_white_balance_sunny"
+        android:tint="@color/colorAccent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRainy"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonWindy"
+        tools:layout_editor_absoluteY="243dp" />
+
+</android.support.constraint.ConstraintLayout>
