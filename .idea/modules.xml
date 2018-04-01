@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Figler_Overworld.iml" filepath="$PROJECT_DIR$/Figler_Overworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/MusicPlayer.iml" filepath="$PROJECT_DIR$/MusicPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/music-player-android.iml" filepath="$PROJECT_DIR$/music-player-android.iml" />
     </modules>
   </component>
 </project>

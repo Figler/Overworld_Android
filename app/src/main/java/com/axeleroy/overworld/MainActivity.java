@@ -171,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        // Désenregistrement des BroadcastReceiver à la mise en pause de l'activité
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiverElapsedTime);
         LocalBroadcastManager.getInstance(this).unregisterReceiver(receiverCompleted);
         super.onPause();
