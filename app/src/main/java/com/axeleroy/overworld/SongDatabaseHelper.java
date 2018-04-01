@@ -9,7 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class SongDatabaseHelper extends SQLiteOpenHelper {
 
@@ -38,44 +45,102 @@ public class SongDatabaseHelper extends SQLiteOpenHelper {
         Listeners.add(listener);
     }
 
-    public void touchedFavFood(String food) {
-        if(checkIfExisted(food) == true){
-            Instance.getWritableDatabase().delete("FavFood", " Food = ?", new String[] { food });
-        }else {
-            ContentValues values = new ContentValues();
-            values.put("Food", food);
-            Instance.getWritableDatabase().insert("FavFood", null, values);
-        }
-       // NotifyListeners();
-    }
 
-    public int checkMenuFav(String menu){
-        int result = 0;
-        SQLiteDatabase db = Instance.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select * from FavFood", null);
-        if (cursor.moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                String name = cursor.getString(cursor.getColumnIndex("Food"));
-                if(menu.contains(name)){
-                    result++;
+    public Song getCorrectSong(HashMap<String, String> requests){
+        HashMap<Song, Integer> fitSongs = new HashMap<Song, Integer>() {
+        };
+
+        if(requests.get("tag_weather")!= null) {
+            String tag_weather = requests.get("tag_weather");
+            SQLiteDatabase db = Instance.getReadableDatabase();
+            String Query = "Select * from Songs WHERE TagWeather = ?";
+            Cursor cursor = db.rawQuery(Query, new String[]{tag_weather});
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    String SongUri = cursor.getString(cursor.getColumnIndex("SongUri"));
+                    String tagWeather = cursor.getString(cursor.getColumnIndex("TagWeather"));
+                    String tagTime = cursor.getString(cursor.getColumnIndex("TagTime"));
+                    String tagLocation = cursor.getString(cursor.getColumnIndex("TagLocation"));
+                    Song song = new Song(Uri.parse(SongUri), tagWeather, tagTime, tagLocation);
+                    if (!fitSongs.containsKey(song)) {
+                       fitSongs.put(song,1);
+                    }else{
+                        int count = fitSongs.get(song);
+                        fitSongs.put(song,count++);
+                    }
+                    cursor.moveToNext();
                 }
-                cursor.moveToNext();
             }
         }
-        return result;
+
+        if(requests.get("tag_time")!= null) {
+            String tag_time = requests.get("tag_time");
+            SQLiteDatabase db = Instance.getReadableDatabase();
+            String Query = "Select * from Songs WHERE TagTime = ?";
+            Cursor cursor = db.rawQuery(Query, new String[]{tag_time});
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    String SongUri = cursor.getString(cursor.getColumnIndex("SongUri"));
+                    String tagWeather = cursor.getString(cursor.getColumnIndex("TagWeather"));
+                    String tagTime = cursor.getString(cursor.getColumnIndex("TagTime"));
+                    String tagLocation = cursor.getString(cursor.getColumnIndex("TagLocation"));
+                    Song song = new Song(Uri.parse(SongUri), tagWeather, tagTime, tagLocation);
+                    if (!fitSongs.containsKey(song)) {
+                        fitSongs.put(song,1);
+                    }else{
+                        int count = fitSongs.get(song);
+                        fitSongs.put(song,count++);
+                    }
+                    cursor.moveToNext();
+                }
+            }
+        }
+
+        if(requests.get("tag_location")!= null) {
+            String tag_location = requests.get("tag_location");
+            SQLiteDatabase db = Instance.getReadableDatabase();
+            String Query = "Select * from Songs WHERE TagTime = ?";
+            Cursor cursor = db.rawQuery(Query, new String[]{tag_location});
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    String SongUri = cursor.getString(cursor.getColumnIndex("SongUri"));
+                    String tagWeather = cursor.getString(cursor.getColumnIndex("TagWeather"));
+                    String tagTime = cursor.getString(cursor.getColumnIndex("TagTime"));
+                    String tagLocation = cursor.getString(cursor.getColumnIndex("TagLocation"));
+                    Song song = new Song(Uri.parse(SongUri), tagWeather, tagTime, tagLocation);
+                    if (!fitSongs.containsKey(song)) {
+                        fitSongs.put(song,1);
+                    }else{
+                        int count = fitSongs.get(song);
+                        fitSongs.put(song,count++);
+                    }
+                    cursor.moveToNext();
+                }
+            }
+        }
+
+        return sortByValue(fitSongs).getKey();
     }
 
-    public boolean checkIfExisted(String food) {
-        SQLiteDatabase db = Instance.getReadableDatabase();
-        String Query = "Select * from FavFood WHERE Food = ?";
-        Cursor cursor = db.rawQuery(Query, new String[] { food });
-        if(cursor.getCount() <= 0){
-            cursor.close();
-            return false;
-        }
-        cursor.close();
-        return true;
+    private static <K, V> Map.Entry<K,V> sortByValue(Map<K, V> map) {
+        List<Map.Entry<K, V>> list = new LinkedList<>(map.entrySet());
+        Collections.sort(list, new Comparator<Object>() {
+            @SuppressWarnings("unchecked")
+            public int compare(Object o1, Object o2) {
+                return ((Comparable<V>) ((Map.Entry<K, V>) (o1)).getValue()).compareTo(((Map.Entry<K, V>) (o2)).getValue());
+            }
+        });
+
+//        Map<K, V> result = new LinkedHashMap<>();
+//        for (Iterator<Map.Entry<K, V>> it = list.iterator(); it.hasNext();) {
+//            Map.Entry<K, V> entry = (Map.Entry<K, V>) it.next();
+//            result.put(entry.getKey(), entry.getValue());
+//        }
+
+        return list.get(0);
     }
+
+
 
     public void insertSong(Song song){
         ContentValues values = new ContentValues();
@@ -101,6 +166,7 @@ public class SongDatabaseHelper extends SQLiteOpenHelper {
                 cursor.moveToNext();
             }
         }
+        cursor.close();
         return results;
     }
 
