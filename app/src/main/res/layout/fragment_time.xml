@@ -10,10 +10,11 @@
 
     <ImageButton
         android:id="@+id/daybutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@null"
         android:padding="@dimen/fab_margin"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_weather_sunny"
         android:text="Button"
         android:tint="@color/colorAccent"
@@ -24,15 +25,17 @@
 
     <ImageButton
         android:id="@+id/nightbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="52dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:background="@null"
         android:padding="@dimen/fab_margin"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_weather_night"
         android:text="Button"
         android:tint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/daybutton"
-        tools:layout_editor_absoluteY="242dp" />
+        tools:layout_editor_absoluteY="238dp" />
+
 </android.support.constraint.ConstraintLayout>

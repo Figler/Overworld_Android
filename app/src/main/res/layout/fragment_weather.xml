@@ -7,46 +7,49 @@
 
     <ImageButton
         android:id="@+id/buttonWindy"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_vertical"
         android:background="@null"
         android:padding="@dimen/fab_margin"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_weather_windy"
         android:tint="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/buttonSunny"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="243dp" />
+        tools:layout_editor_absoluteY="205dp" />
 
 
     <ImageButton
         android:id="@+id/buttonRainy"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_vertical"
         android:background="@null"
         android:padding="@dimen/fab_margin"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_weather_rainy"
         android:tint="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonSunny"
-        tools:layout_editor_absoluteY="243dp" />
+        tools:layout_editor_absoluteY="205dp" />
 
 
     <ImageButton
         android:id="@+id/buttonSunny"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center_vertical"
         android:background="@null"
         android:padding="@dimen/fab_margin"
+        android:scaleType="fitXY"
         android:src="@drawable/ic_white_balance_sunny"
         android:tint="@color/colorAccent"
         app:layout_constraintEnd_toStartOf="@+id/buttonRainy"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonWindy"
-        tools:layout_editor_absoluteY="243dp" />
+        tools:layout_editor_absoluteY="205dp" />
 
 </android.support.constraint.ConstraintLayout>
